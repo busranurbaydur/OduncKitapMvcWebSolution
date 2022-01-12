@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TurController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +145,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="webpanel\webpanel\css\simple-sidebar.css" />
+    <Content Include="webpanel\webpanel\gulpfile.js" />
+    <Content Include="webpanel\webpanel\index.html" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.js" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.min.js" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.slim.js" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.slim.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -169,6 +187,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Deneme.cshtml" />
+    <Content Include="webpanel\webpanel\.travis.yml" />
+    <Content Include="webpanel\webpanel\LICENSE" />
+    <Content Include="webpanel\webpanel\package-lock.json" />
+    <Content Include="webpanel\webpanel\package.json" />
+    <Content Include="webpanel\webpanel\README.md" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="webpanel\webpanel\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.min.map" />
+    <Content Include="webpanel\webpanel\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Tur\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

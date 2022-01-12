@@ -1,0 +1,44 @@
+﻿@using OduncKitapMvcWebSolution_Business;
+@model List<Turler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+@{if (ViewBag.TurListCount == 0)
+    {
+        <div class="alert alert-success" role="alert">
+            Tür tablosunda kayıt bulunmamaktadır.
+            <br />
+        </div>
+        }
+    }
+
+<a href="" class="btn btn-sm btn-primary"> Yeni Tür Ekle</a><br /><br />
+
+@{ if (ViewBag.TurListCount > 0)
+    {
+        int siraNo = 0;
+        <table class="table table-hover">
+            <tr>
+                <th>Sıra No</th>
+                <th>Tür Adı</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(siraNo+=1)</td>
+                    <td>@item.TurAdi</td>
+                    <td>@item.EklenmeTarihi.ToShortDateString()</td>
+                    <td>
+                        <input type="button" class="btn btn-sm btn-warning" value="Düzenle"
+                               style="margin-right:3px" />
+                        <input type="button" class="btn btn-sm btn-danger" value="Sil" />
+                    </td>
+                </tr>
+            }
+        </table>
+    } }
