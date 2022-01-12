@@ -1,0 +1,49 @@
+﻿@using OduncKitapMvcWebSolution_Business
+@model List<Kitaplar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+@{
+
+    //viewbag.hatamesajı isimli değişken dolu ise
+    if (!String.IsNullOrEmpty(ViewBag.HataMesaji))
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.HataMesaji
+
+        </div>
+        <br />
+    }
+
+    if (ViewBag.KitapCount == 0)
+    {
+        <div class="alert alert-success" role="alert">
+            Kayıt bulunamadı
+            <br />
+        </div>
+    }
+
+    @Html.ActionLink("Yeni Kitap Ekle", "EKLE", "Kitap", null, new { @class = "btn btn-sm btn-primary", @style = "margin:5px" })
+
+    if (ViewBag.KitapListCount > 0)
+    {
+        int siraNo = 0;
+        <table class="table table-hover">
+            <tr>
+                <th>Sıra No</th>
+                <th>Kitap Adı</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                
+            }
+        </table>
+    }
+}
+
+}

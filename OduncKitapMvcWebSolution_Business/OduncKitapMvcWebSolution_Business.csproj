@@ -56,6 +56,7 @@
     <Compile Include="Kitaplar.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Managers\KitapManager.cs" />
     <Compile Include="Managers\TurManager.cs" />
     <Compile Include="MyModel.Context.cs">
       <AutoGen>True</AutoGen>

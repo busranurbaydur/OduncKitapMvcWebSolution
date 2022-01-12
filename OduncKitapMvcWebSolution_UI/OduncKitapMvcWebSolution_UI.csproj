@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KitapController.cs" />
     <Compile Include="Controllers\TurController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,7 @@
     <Content Include="webpanel\webpanel\vendor\jquery\jquery.min.map" />
     <Content Include="webpanel\webpanel\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Tur\Index.cshtml" />
+    <Content Include="Views\Kitap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
