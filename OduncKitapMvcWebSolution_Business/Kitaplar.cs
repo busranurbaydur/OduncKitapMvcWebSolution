@@ -28,6 +28,7 @@ namespace OduncKitapMvcWebSolution_Business
         public int SayfaSayisi { get; set; }
         public int StokAdedi { get; set; }
         public bool SilindiMi { get; set; }
+        public string ResimLink { get; set; }
     
         public virtual Turler Turler { get; set; }
         public virtual Yazarlar Yazarlar { get; set; }
