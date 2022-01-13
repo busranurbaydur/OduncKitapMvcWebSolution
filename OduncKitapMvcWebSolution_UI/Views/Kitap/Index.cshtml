@@ -34,7 +34,7 @@
 
         if (ViewBag.Suan>1)
         {
-            siraNo = ViewBag.Suan * ViewBag.PageSize;
+            siraNo += (ViewBag.Suan - 1)* ViewBag.PageSize;
         }
 
         <table class="table table-hover">
@@ -72,13 +72,13 @@
                         <a href="@Url.Action("Index","Kitap",new {@page=ViewBag.Suan-1 })" id="pageprevious">&laquo;</a>
                     </li>
 
-                    @for (int i = 1; i < (int)ViewBag.ToplamSayfa; i++)
+                    @for (int i = 1; i <= (int)ViewBag.ToplamSayfa; i++)
                     {
                         <li>
-                            <a href="@Url.Action("Index","Kitap",new {@page=i})" >@i</a>
+                            <a href="@Url.Action("Index","Kitap",new {@page=i})">@i</a>
                         </li>
                     }
-
+                    
                     <li>
                         <a href="@Url.Action("Index","Kitap",new {@page=ViewBag.Suan+1 })" id="pagenext">&raquo;</a>
                     </li>
@@ -94,10 +94,10 @@
         var suan =@ViewBag.Suan;
         var toplam =@ViewBag.ToplamSayfa;
         if (suan==1) {
-            $("#pageprevious").romaveAttr("href");
+            $("#pageprevious").removeAttr("href");
         }
         if (suan==toplam) {
-            $("#pagenext").romaveAttr("href");
+            $("#pagenext").removeAttr("href");
         }
     </script>
     }

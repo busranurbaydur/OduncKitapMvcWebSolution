@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Managers\KitapManager.cs" />
     <Compile Include="Managers\TurManager.cs" />
+    <Compile Include="Managers\YazarManager.cs" />
     <Compile Include="MyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

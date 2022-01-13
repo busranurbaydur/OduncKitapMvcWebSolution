@@ -28,5 +28,19 @@ namespace OduncKitapMvcWebSolution_Business.Managers
                 throw ex;
             }
         }
+        public bool YeniKitapEkle(Kitaplar yeniKitap)
+        {
+            try
+            {
+                dbContext.Kitaplar.Add(yeniKitap);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
