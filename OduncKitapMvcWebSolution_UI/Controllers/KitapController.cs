@@ -89,7 +89,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 if (!ModelState.IsValid)
                 {
                     ModelState.AddModelError("", "Giriş İşlemlerinizi Eksiksiz Tamamlayınız..");
-                    return View(new KitapViewModel());
+                    return View(yeniKitap);
                 }
 
                 Kitaplar eklenecekKitap = new Kitaplar()
@@ -105,10 +105,12 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                     && yeniKitap.Resim.ContentType.Contains("image")
                     &&yeniKitap.Resim.ContentLength>0)
                 {
-                    string filename = Path.GetFileNameWithoutExtension(yeniKitap.Resim.FileName);
+                    //    string filename = Path.GetFileNameWithoutExtension(yeniKitap.Resim.FileName);
+
+                    string filename = SiteSettings.CharacterFormatConverter(yeniKitap.KitapAdi).ToLower();
 
                     string extName = Path.GetExtension(yeniKitap.Resim.FileName);
-                    filename += Guid.NewGuid().ToString().Replace("-", "");
+                    filename += "-"+Guid.NewGuid().ToString().Replace("-", "");
                     var directoryPath = Server.MapPath($"~/BookImages/");
                     var filePath = Server.MapPath($"~/BookImages") + filename + extName;
 
@@ -116,20 +118,26 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                     {
                         Directory.CreateDirectory(directoryPath);
                     }
+                    yeniKitap.Resim.SaveAs(filePath);
                     eklenecekKitap.ResimLink = @"/BookImages" + filename + extName;
                 }
 
                 if (myKitapManager.YeniKitapEkle(eklenecekKitap))
                 {
-                    RedirectToAction("Index", "Kitaplar");
+                   return RedirectToAction("Index", "Kitap");
                 }
-                return View();
+                else
+                {
+                    ModelState.AddModelError("", "giriş işlemlerinizi eksiksiz tamamlayınız!!!");
+                    return View(yeniKitap);
+                }
+                
             }
             catch (Exception ex)
             {
 
                 ModelState.AddModelError("", "Beklenmedik bir hata oluştu!!!");
-                return View(new KitapViewModel());
+                return View(yeniKitap);
             }
         }
     }

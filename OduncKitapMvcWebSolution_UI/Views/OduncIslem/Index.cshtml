@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    <br />
+
+    if (!String.IsNullOrEmpty(ViewBag.HataMesaji))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.HataMesaji
+
+        </div>
+        <br />
+    }
+
+    @Html.ActionLink("Yeni Ödünç İşlem", "EKLE", "OduncIslem", null, new { @class = "btn btn-sm btn-primary", @style = "margin:5px" })
+}
+

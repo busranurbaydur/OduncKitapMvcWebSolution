@@ -27,6 +27,7 @@
     }
 
     @Html.ActionLink("Yeni Kitap Ekle", "EKLE", "Kitap", null, new { @class = "btn btn-sm btn-primary", @style = "margin:5px" })
+    <br /><br />
 
     if (ViewBag.KitapListCount > 0)
     {
@@ -37,27 +38,45 @@
             siraNo += (ViewBag.Suan - 1)* ViewBag.PageSize;
         }
 
-        <table class="table table-hover">
+        <table class="table table-hover sortable">
             <tr>
-                <th>Sıra No</th>
-                <th>Kitap Adı</th>
-                <th>Kayıt Tarihi</th>
-                <th>Türü</th>
-                <th>Yazarı</th>
+            <tr>
+                <th data-defaultsign="_19" style="cursor: pointer">Sıra No &darr;&uarr;</th>
+                <th>Resim</th>
+                <th data-defaultsign="AZ" style="cursor:pointer">Kitap Adı &darr;&uarr;</th>
+                <th data-defaultsign="AZ" style="cursor:pointer">Tür &darr;&uarr;</th>
+                <th data-defaultsign="AZ" style="cursor:pointer">Yazar &darr;&uarr;</th>
+                <th data-defaultsign="date" style="cursor:pointer">Kayıt Tarihi &darr;&uarr;</th>
                 <th>İşlemler</th>
+            </tr>
             </tr>
             @foreach (var item in Model)
             {
         <tr>
             <td>@(++siraNo)</td>
-            <td>@item.KitapAdi</td>
-            <td>@item.KayitTarihi.ToShortDateString()</td>
-            <td>@item.Turler.TurAdi</td>
-            <td>@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
+            <td>
+            @if (item.ResimLink==null)
+            {
+                <img src="~/BookImages/defaultbook.jpg" style="width:65px"/>
+            }
+            else
+            {
+                <img src="@item.ResimLink" style="width:65px" />
+            }
+            
+            
+            </td>
+            <td class="align-middle">@item.KitapAdi</td>
+            @*<td>@item.KitapAdi</td>*@
+            <td class="align-middle">@item.Turler.TurAdi</td>
+            <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
 
-            <td>@Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })</td>
+            <td class="align-middle">@item.KayitTarihi.ToString("dd.MM.yyyy")</td>
 
-            <td>@Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })</td>
+
+            <td class="align-middle">@Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })</td>
+
+            <td class="align-middle">@Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })</td>
 
         </tr>
             }
@@ -66,7 +85,7 @@
         <br />
         <div class="row">
 
-            <div class="text-center">
+            <div class="text-center col-4 offset-4">
                 <ul class="pagination">
                     <li>
                         <a href="@Url.Action("Index","Kitap",new {@page=ViewBag.Suan-1 })" id="pageprevious">&laquo;</a>

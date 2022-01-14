@@ -1,0 +1,45 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model OduncIslemViewModel
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div class="form-group col-4">
+
+    @using (Html.BeginForm("Ekle", "OduncIslem", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+       
+        <div class="form-group">
+
+            @Html.Label("Kitap : ") <br /><br />
+            @Html.DropDownListFor(x => x.KitapId, (List<SelectListItem>)ViewBag.KitapListesi,
+           new { @class = "form-control" }
+           )
+
+        </div>
+        <div class="form-group">
+            <label>Ödünç Verilen Tarih :</label><br /><br />
+            <input type="date" class="form-control" name="OduncAlinmaTarihi" />
+        </div>
+
+        <div class="form-group">
+
+            @Html.Label("Üye : ") <br /><br />
+            @Html.DropDownListFor(x => x.UyeId, (List<SelectListItem>)ViewBag.UyeListesi,
+           new { @class = "form-control" }
+           )
+
+        </div>
+
+       
+
+        <div class="form-group" align="right">
+            <button type="submit" class="btn btn-info">Ödünç Ver</button>
+        </div>
+    }
+</div>
