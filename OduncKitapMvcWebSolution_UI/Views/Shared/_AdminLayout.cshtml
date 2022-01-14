@@ -31,26 +31,9 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading"><h4><strong>Ödünç Kitap Sistemi</strong></h4> </div>
-
-            <div class="list-group list-group-flush">
-            
-
-                <a href="/Tur/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Tür İşlemleri</strong></h4></a>
-
-                <a href="/Yazar/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Yazar İşlemleri</strong></h4></a>
-
-                <a href="/Kitap/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Kitap İşlemleri</strong></h4></a>
-
-                <a href="/OduncIslem/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Ödünç İşlemleri</strong></h4></a>
-
-                <a href="/Uye/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Üye İşlemleri</strong></h4></a>
-
-                <a href="/Personel/Index" class="list-group-item list-group-item-action bg-light"><h4><strong> Personel İşlemleri</strong></h4></a>
-
-            </div>
-        </div>
+        @{ 
+            Html.RenderAction("MenuPartialResult", "Partials");
+        }
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">

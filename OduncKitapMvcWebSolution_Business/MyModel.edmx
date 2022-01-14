@@ -16,7 +16,7 @@
           <Property Name="YazarId" Type="int" Nullable="false" />
           <Property Name="SayfaSayisi" Type="int" Nullable="false" />
           <Property Name="StokAdedi" Type="int" Nullable="false" />
-          <Property Name="ResimLink" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="ResimLink" Type="char" MaxLength="100" />
           <Property Name="SilindiMi" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="OduncIslemler">
@@ -194,7 +194,7 @@
           <NavigationProperty Name="Turler" Relationship="Self.FK_Kitaplar_Turler" FromRole="Kitaplar" ToRole="Turler" />
           <NavigationProperty Name="Yazarlar" Relationship="Self.FK_Kitaplar_Yazarlar" FromRole="Kitaplar" ToRole="Yazarlar" />
           <NavigationProperty Name="OduncIslemler" Relationship="Self.FK_OduncIslemler_Kitaplar" FromRole="Kitaplar" ToRole="OduncIslemler" />
-          <Property Name="ResimLink" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ResimLink" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="OduncIslemler">
           <Key>

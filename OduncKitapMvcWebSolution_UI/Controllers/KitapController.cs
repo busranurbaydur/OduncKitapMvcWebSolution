@@ -79,19 +79,17 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             return View(new KitapViewModel());
 
         }
-
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Ekle(KitapViewModel yeniKitap) 
+        public ActionResult Ekle(KitapViewModel yeniKitap)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    ModelState.AddModelError("", "Giriş İşlemlerinizi Eksiksiz Tamamlayınız..");
+                    ModelState.AddModelError("", "Giriş işlemlerinizi eksiksiz tamamlayınız!");
                     return View(yeniKitap);
                 }
-
                 Kitaplar eklenecekKitap = new Kitaplar()
                 {
                     KayitTarihi = DateTime.Now,
@@ -101,42 +99,51 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                     YazarId = yeniKitap.YazarId,
                     TurId = yeniKitap.TurId
                 };
-                if (yeniKitap.Resim!=null
+                //Resim null değilse sisteme kaydolacak
+                if (yeniKitap.Resim != null
                     && yeniKitap.Resim.ContentType.Contains("image")
-                    &&yeniKitap.Resim.ContentLength>0)
+                    && yeniKitap.Resim.ContentLength > 0
+                    )
                 {
-                    //    string filename = Path.GetFileNameWithoutExtension(yeniKitap.Resim.FileName);
-
+                    //string filename = Path
+                    //    .GetFileNameWithoutExtension(yeniKitap.Resim.FileName);
                     string filename = SiteSettings.CharacterFormatConverter(yeniKitap.KitapAdi).ToLower();
-
-                    string extName = Path.GetExtension(yeniKitap.Resim.FileName);
-                    filename += "-"+Guid.NewGuid().ToString().Replace("-", "");
-                    var directoryPath = Server.MapPath($"~/BookImages/");
-                    var filePath = Server.MapPath($"~/BookImages") + filename + extName;
-
+                    string extName = Path
+                        .GetExtension(yeniKitap.Resim.FileName);
+                    //
+                    filename += "-" + Guid.NewGuid()
+                        .ToString().Replace("-", "");
+                    var directoryPath =
+                        Server.MapPath($"~/BookImages/");
+                    var filePath = Server
+                        .MapPath($"~/BookImages/")
+                        + filename + extName;
                     if (!Directory.Exists(directoryPath))
                     {
                         Directory.CreateDirectory(directoryPath);
                     }
                     yeniKitap.Resim.SaveAs(filePath);
-                    eklenecekKitap.ResimLink = @"/BookImages" + filename + extName;
+                    eklenecekKitap.ResimLink =
+                        @"/BookImages/" + filename + extName;
                 }
 
+                //managerı çağırabiliriz.
                 if (myKitapManager.YeniKitapEkle(eklenecekKitap))
                 {
-                   return RedirectToAction("Index", "Kitap");
+                    return RedirectToAction("Index", "Kitap");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "giriş işlemlerinizi eksiksiz tamamlayınız!!!");
+                    ModelState.AddModelError("", "Giriş işlemlerinizi eksiksiz tamamlayınız!");
                     return View(yeniKitap);
                 }
-                
             }
             catch (Exception ex)
             {
+                // UI'da ex.Message'lar gönderilmez. exception mesajları loglanır. Ama biz şimdilik geçici olarak bir hata olursa görmek amacıyla yazıverdik.
 
-                ModelState.AddModelError("", "Beklenmedik bir hata oluştu!!!");
+                ModelState.AddModelError("", "Beklenmedik bir hata oluştu!" + ex.Message);
+                //TO DO: ex.Message loglanabilir
                 return View(yeniKitap);
             }
         }

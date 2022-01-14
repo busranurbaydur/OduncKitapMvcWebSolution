@@ -55,23 +55,23 @@
         <tr>
             <td>@(++siraNo)</td>
             <td>
-            @if (item.ResimLink==null)
-            {
-                <img src="~/BookImages/defaultbook.jpg" style="width:65px"/>
-            }
-            else
-            {
-                <img src="@item.ResimLink" style="width:65px" />
-            }
-            
-            
+                @if (item.ResimLink == null)
+                {
+                    <img src="~/BookImages/defaultbook.jpg" style="width:65px" />
+                }
+                else
+                {
+                    <img src="@item.ResimLink" style="width:65px" />
+                }
+
+
             </td>
             <td class="align-middle">@item.KitapAdi</td>
             @*<td>@item.KitapAdi</td>*@
             <td class="align-middle">@item.Turler.TurAdi</td>
             <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
 
-            <td class="align-middle">@item.KayitTarihi.ToString("dd.MM.yyyy")</td>
+            <td class="align-middle"> @item.KayitTarihi.ToString("dd.MMM.yyyy")</td>
 
 
             <td class="align-middle">@Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })</td>
