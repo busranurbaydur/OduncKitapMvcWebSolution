@@ -1,5 +1,6 @@
 ﻿using OduncKitapMvcWebSolution_Business;
 using OduncKitapMvcWebSolution_Business.Managers;
+using OduncKitapMvcWebSolution_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,9 +109,19 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             if (id>0)
             {
                var yazar= myYazarManager.TumAktifYazarlariGetir().FirstOrDefault(x=>x.Id==id);
-                //return View("Index",yazar);
+                YazarViewModel model = new YazarViewModel()
+                {
+                    Id = yazar.Id,
+                    YazarAdi = yazar.YazarAdi,
+                    YazarSoyadi = yazar.YazarSoyadi,
+                    SilindiMi = false,
+                    EklenmeTarihi = yazar.EklenmeTarihi
+                };
+                return View(model);
             }
-            return View();
+
+           
+            return View(new YazarViewModel());
         }
 
 

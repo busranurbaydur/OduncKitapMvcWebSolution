@@ -1,5 +1,6 @@
 ﻿using OduncKitapMvcWebSolution_Business;
 using OduncKitapMvcWebSolution_Business.Managers;
+using OduncKitapMvcWebSolution_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +115,24 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 var uye = myUyeManager.TumAktifUyeleriGetir().FirstOrDefault(x => x.Id == id);
                 //return View("Index",yazar);
             }
-            return View();
+
+            if (id>0)
+            {
+                Uyeler uye = myUyeManager.TumAktifUyeleriGetir().FirstOrDefault(x=>x.Id==id);
+                UyeViewModel model = new UyeViewModel()
+                {
+                    Id=uye.Id,
+                    UyeAdi = uye.UyeAdi,
+                    UyeSoyadi = uye.UyeSoyadi,
+                    DogumTarihi=DateTime.Now,
+                    TelefonNumarasi = uye.TelefonNumarasi,
+                    Email=uye.Email
+
+                };
+                return View(model);
+            }
+
+            return View(new UyeViewModel());
         }
 
 

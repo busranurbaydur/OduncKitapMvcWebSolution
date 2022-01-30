@@ -1,5 +1,6 @@
 ﻿using OduncKitapMvcWebSolution_Business;
 using OduncKitapMvcWebSolution_Business.Managers;
+using OduncKitapMvcWebSolution_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +60,17 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             if (id > 0)
             {
                 Turler bulunanTur = myTurManager.AktifTumTurleriGetir().FirstOrDefault(x => x.Id == id);
+                TurViewModel model = new TurViewModel()
+                {
+                    Id = bulunanTur.Id,
+                    TurAdi = bulunanTur.TurAdi,
+                    SilindiMi = false,
+                    EklenmeTarihi = bulunanTur.EklenmeTarihi
+                };
+                return View(model);
             }
 
-            return View();
+            return View(new TurViewModel());
         }
 
 

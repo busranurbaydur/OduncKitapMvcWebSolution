@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2> Personel Guncelle</h2>
+<h2> Personel Güncelle</h2>
 
 @using (Html.BeginForm("Guncelle", "Personel", FormMethod.Post))
 {
@@ -14,20 +14,20 @@
     @Html.TextBoxFor(x => x.PersonelAdi, new { @class = "form-control" })
     <br />
 
-    @Html.HiddenFor(x => x.Id)
+    
     @Html.Label("Personel Soyadı : ")
     @Html.TextBoxFor(x => x.PersonelSoyadi, new { @class = "form-control" })
     <br />
 
 
 
-    @Html.HiddenFor(x => x.Id)
+    
     @Html.Label("Telefon : ")
     @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
     <br />
 
 
-    @Html.HiddenFor(x => x.Id)
+   
     @Html.Label("Email : ")
     @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
     <br />

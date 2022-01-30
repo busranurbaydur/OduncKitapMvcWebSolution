@@ -1,5 +1,6 @@
 ﻿using OduncKitapMvcWebSolution_Business;
 using OduncKitapMvcWebSolution_Business.Managers;
+using OduncKitapMvcWebSolution_UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,9 +113,19 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             if (id > 0)
             {
                 var personel = myPersonelManager.TumAktifPersonelleriGetir().FirstOrDefault(x => x.Id == id);
-                
+                PersonelViewModel model = new PersonelViewModel()
+                {
+                    Id =personel.Id,
+                    PersonelAdi =personel.PersonelAdi,
+                    PersonelSoyadi = personel.PersonelSoyadi,
+                    Telefon = personel.Telefon,
+                    Email = personel.Email,
+                    SilindiMi=false
+                    
+                };
+                return View(model);
             }
-            return View();
+            return View(new PersonelViewModel());
         }
 
 
