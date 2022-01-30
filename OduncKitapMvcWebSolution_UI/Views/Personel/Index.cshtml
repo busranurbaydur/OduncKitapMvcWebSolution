@@ -1,4 +1,5 @@
-﻿
+﻿@using OduncKitapMvcWebSolution_Business;
+@model List<Personeller>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,3 +7,41 @@
 
 <h2>Personel İşlemleri</h2>
 
+<a href="/Personel/Ekle" class="btn btn-sm btn-primary"> Yeni Personel Ekle</a>
+<br />
+<br />
+
+@{ if (ViewBag.PersonelListCount > 0)
+    {
+
+        <table class="table table-hover">
+            <tr>
+                <th>Personel Id</th>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Telefon Numarası</th>
+                <th>Email</th>
+                <th>Silindi Mi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.PersonelAdi</td>
+                    <td>@item.PersonelSoyadi</td>
+                    <td>@item.Telefon</td>
+                    <td>@item.Email</td>
+                    <td>@item.SilindiMi</td>
+                    <td>
+                        <a href="/Personel/Guncelle/@item.Id" class="btn btn-sm btn-warning">Güncelle</a>
+
+                        <a href="/Personel/Sil/@item.Id" class="btn btn-sm btn-danger">Sil</a>
+
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+}

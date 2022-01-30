@@ -55,7 +55,7 @@ namespace OduncKitapMvcWebSolution_Business.Managers
         public bool KitapGuncelle(Kitaplar kitap)
         {
             var guncellenecekKitap = dbContext.Kitaplar.FirstOrDefault(x=>x.Id==kitap.Id);
-           // dbContext.SaveChanges();
+           dbContext.SaveChanges();
 
             return true;
         }

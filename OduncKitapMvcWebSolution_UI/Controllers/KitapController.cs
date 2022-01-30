@@ -176,7 +176,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
 
 
         [HttpGet]
-        public ActionResult Guncelle()
+        public ActionResult Guncelle(int id)
         {
             List<SelectListItem> turListesi = new List<SelectListItem>();
             myTurManager.AktifTumTurleriGetir().ForEach(
@@ -200,27 +200,72 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 }));
 
             ViewBag.YazarListesi = yazarListesi;
+            if (id>0)
+            {
+                Kitaplar kitap = myKitapManager.TumAktifKitaplariGetir().FirstOrDefault(x => x.Id == id);
+                KitapViewModel model = new KitapViewModel()
+                {
+                    Id=kitap.Id,
+                    KayitTarihi=kitap.KayitTarihi,
+                    KitapAdi=kitap.KitapAdi,
+                    SayfaSayisi=kitap.SayfaSayisi,
+                    StokAdedi=kitap.StokAdedi,
+                    SilindiMi=kitap.SilindiMi,
+                    YazarId=kitap.YazarId,
+                    TurId=kitap.TurId,
+                    ResimLink=kitap.ResimLink
+                };
+                return View(model);
+            }
 
             return View(new KitapViewModel());
         }
 
 
         [HttpPost]
-        public ActionResult Guncelle(Kitaplar kitap)
+        public ActionResult Guncelle(KitapViewModel kitap)
         {
             Kitaplar guncellenecekKitap = myKitapManager.TumAktifKitaplariGetir().FirstOrDefault(x=>x.Id==kitap.Id);
 
             if (guncellenecekKitap.KitapAdi!=null)
             {
-                guncellenecekKitap.KayitTarihi = kitap.KayitTarihi;
+                //guncellenecekKitap.KayitTarihi = kitap.KayitTarihi;            
+                guncellenecekKitap.KayitTarihi =kitap.KayitTarihi;
                 guncellenecekKitap.KitapAdi = kitap.KitapAdi;
                 guncellenecekKitap.SayfaSayisi = kitap.SayfaSayisi;
-                guncellenecekKitap.ResimLink = kitap.ResimLink;
+              
                 guncellenecekKitap.SilindiMi = kitap.SilindiMi;
                 guncellenecekKitap.StokAdedi = kitap.StokAdedi;
                 guncellenecekKitap.YazarId = kitap.YazarId;
                 guncellenecekKitap.TurId = kitap.TurId;
-                myKitapManager.KitapGuncelle(kitap);
+                if (kitap.Resim != null
+                   && kitap.Resim.ContentType.Contains("image")
+                   && kitap.Resim.ContentLength > 0
+                   )
+                {
+                    //string filename = Path
+                    //    .GetFileNameWithoutExtension(yeniKitap.Resim.FileName);
+                    string filename = SiteSettings.CharacterFormatConverter(kitap.KitapAdi).ToLower();
+                    string extName = Path
+                        .GetExtension(kitap.Resim.FileName);
+                    //
+                    filename += "-" + Guid.NewGuid()
+                        .ToString().Replace("-", "");
+                    var directoryPath =
+                        Server.MapPath($"~/BookImages/");
+                    var filePath = Server
+                        .MapPath($"~/BookImages/")
+                        + filename + extName;
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
+                    kitap.Resim.SaveAs(filePath);
+                    guncellenecekKitap.ResimLink =
+                        @"/BookImages/" + filename + extName;
+                }
+                myKitapManager.KitapGuncelle(guncellenecekKitap);
+                
                 
             }
 

@@ -72,11 +72,18 @@
             <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
 
             <td class="align-middle"> @item.KayitTarihi.ToString("dd.MMM.yyyy")</td>
+            <td>
+                @Html.ActionLink("Düzenle", "Guncelle", "Kitap"
+              , new { id = item.Id } , new                  {
+                       @class = "btn btn-sm btn-warning"
+              ,
+                       @style = "margin-right:3px"
+                   })
+            </td>
 
+            @*<td class="align-middle">@Html.ActionLink("Düzenle", "Guncelle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })</td>*@
 
-            <td class="align-middle">@Html.ActionLink("Düzenle", "Guncelle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })</td>
-
-            <td class="align-middle">@Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })</td>
+            <td class="align-middle">@Html.ActionLink("Sil", "Sil", "Kitap", new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" }, new { id = item.Id })</td>
 
         </tr>
             }

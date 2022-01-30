@@ -1,4 +1,5 @@
-﻿
+﻿@using OduncKitapMvcWebSolution_Business;
+@model List<Uyeler>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,3 +7,45 @@
 
 <h2>Üye İşlemleri</h2>
 
+<a href="/Uye/Ekle" class="btn btn-sm btn-primary"> Yeni Üye Ekle</a>
+<br />
+<br />
+
+@{ if (ViewBag.UyeListCount > 0)
+    {
+       
+        <table class="table table-hover">
+            <tr>
+                <th>Üye Id</th>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Doğum Tarihi</th>
+                <th>Telefon Numarası</th>
+                <th>Email</th>
+                <th>Kayıt Tarihi</th>
+                <th>Silindi Mi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UyeAdi</td>
+                    <td>@item.UyeSoyadi</td>
+                    <td>@item.DogumTarihi</td>
+                    <td>@item.TelefonNumarasi</td>
+                    <td>@item.Email</td>
+                    <td>@item.KayitTarihi.ToShortDateString()</td>
+                    <td>@item.SilindiMi</td>
+                    <td>
+                        <a href="/Uye/Guncelle/@item.Id" class="btn btn-sm btn-warning">Güncelle</a>
+
+                        <a href="/Uye/Sil/@item.Id" class="btn btn-sm btn-danger">Sil</a>
+
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+}
