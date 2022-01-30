@@ -1,0 +1,25 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model YazarViewModel
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Guncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Yazar", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Yazar Adı : ")
+    @Html.TextBoxFor(x => x.YazarAdi, new { @class = "form-control" })
+    <br />
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Yazar Soyadı : ")
+    @Html.TextBoxFor(x => x.YazarSoyadi, new { @class = "form-control" })
+    <br />
+
+    @*@Html.ActionLink("Güncelle", "Guncelle", "Ogrenci",
+        new { }, new { @class = "btn btn-primary" })*@
+    <input type="submit" class="btn btn-primary" value="Güncelle" />
+}

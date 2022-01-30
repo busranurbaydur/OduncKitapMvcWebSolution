@@ -1,0 +1,18 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model TurViewModel
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Duzenle", "Tur", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Tür")
+    @Html.TextBoxFor(x => x.TurAdi, new { @class = "form-control" })
+    <br />
+   
+     
+    <input type="submit" class="btn btn-primary" value="Güncelle" />
+}
+

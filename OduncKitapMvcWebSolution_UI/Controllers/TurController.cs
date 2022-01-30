@@ -31,10 +31,106 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+
+       public ActionResult Sil(int id)
+        {
+            try
+            {
+
+                var silinecekTur = myTurManager.TurSil(id);
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception)
+            {
+
                 throw;
+            }
+
+           
+        }
+
+        [HttpGet]
+        public ActionResult Duzenle(int id)
+        {
+            if (id > 0)
+            {
+                Turler bulunanTur = myTurManager.AktifTumTurleriGetir().FirstOrDefault(x => x.Id == id);
             }
 
             return View();
         }
+
+
+       // [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Duzenle(Turler tur)
+        {
+            Turler guncellenecekTur = myTurManager.AktifTumTurleriGetir().FirstOrDefault(x => x.Id == tur.Id);
+            if (guncellenecekTur.TurAdi!=null)
+            {
+                
+                guncellenecekTur.TurAdi = tur.TurAdi;
+                guncellenecekTur.EklenmeTarihi = DateTime.Now;
+                guncellenecekTur.SilindiMi = false;
+                myTurManager.TurGuncelle(tur);
+            }
+           
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Ekle()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Ekle(Turler yenitur)
+        {
+
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "Giriş işlemlerinizi eksiksiz tamamlayınız!");
+                    return View(yenitur);
+                }
+                Turler eklenecekTur = new Turler()
+                {
+                    TurAdi = yenitur.TurAdi,
+                    EklenmeTarihi = DateTime.Now,
+                   SilindiMi=false
+
+                };
+
+                if (myTurManager.YeniTurEkle(eklenecekTur))
+                {
+                    return RedirectToAction("Index", "Tur");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Giriş işlemlerinizi eksiksiz tamamlayınız!");
+                    return View(yenitur);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError("", "Beklenmedik bir hata oluştu!" + ex.Message);
+                //TO DO: ex.Message loglanabilir
+                return View(yenitur);
+            }
+           
+        }
+
+
     }
 }

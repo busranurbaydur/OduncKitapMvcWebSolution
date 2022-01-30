@@ -42,5 +42,22 @@ namespace OduncKitapMvcWebSolution_Business.Managers
                 throw ex;
             }
         }
+
+        public bool KitapSil(int id)
+        {
+            var kit=dbContext.Kitaplar.FirstOrDefault(x => x.Id == id);
+            dbContext.Kitaplar.Remove(kit);
+            dbContext.SaveChanges();
+            return true;
+        }
+
+
+        public bool KitapGuncelle(Kitaplar kitap)
+        {
+            var guncellenecekKitap = dbContext.Kitaplar.FirstOrDefault(x=>x.Id==kitap.Id);
+           // dbContext.SaveChanges();
+
+            return true;
+        }
     }
 }

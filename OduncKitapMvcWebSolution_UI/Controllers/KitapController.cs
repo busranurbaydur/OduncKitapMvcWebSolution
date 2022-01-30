@@ -79,6 +79,8 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             return View(new KitapViewModel());
 
         }
+
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Ekle(KitapViewModel yeniKitap)
@@ -146,6 +148,83 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 //TO DO: ex.Message loglanabilir
                 return View(yeniKitap);
             }
+        }
+
+
+        public ActionResult Sil(int id)
+        {
+            
+            try
+            {
+                if (myKitapManager.KitapSil(id)==true)
+                {
+                    return RedirectToAction("Index");
+                }
+               
+               return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError("", "Beklenmedik bir hata oluştu!" + ex.Message);
+                //TO DO: ex.Message loglanabilir
+                return RedirectToAction("Index", "Kitap");
+            }
+
+        }
+
+
+        [HttpGet]
+        public ActionResult Guncelle()
+        {
+            List<SelectListItem> turListesi = new List<SelectListItem>();
+            myTurManager.AktifTumTurleriGetir().ForEach(
+                x =>
+                turListesi.Add(new SelectListItem()
+                {
+                    Text = x.TurAdi,
+                    Value = x.Id.ToString()
+                }));
+
+            ViewBag.TurListesi = turListesi;
+
+
+            List<SelectListItem> yazarListesi = new List<SelectListItem>();
+            myYazarManager.TumAktifYazarlariGetir().ForEach(
+                x =>
+                yazarListesi.Add(new SelectListItem()
+                {
+                    Text = x.YazarAdi + " " + x.YazarSoyadi,
+                    Value = x.Id.ToString()
+                }));
+
+            ViewBag.YazarListesi = yazarListesi;
+
+            return View(new KitapViewModel());
+        }
+
+
+        [HttpPost]
+        public ActionResult Guncelle(Kitaplar kitap)
+        {
+            Kitaplar guncellenecekKitap = myKitapManager.TumAktifKitaplariGetir().FirstOrDefault(x=>x.Id==kitap.Id);
+
+            if (guncellenecekKitap.KitapAdi!=null)
+            {
+                guncellenecekKitap.KayitTarihi = kitap.KayitTarihi;
+                guncellenecekKitap.KitapAdi = kitap.KitapAdi;
+                guncellenecekKitap.SayfaSayisi = kitap.SayfaSayisi;
+                guncellenecekKitap.ResimLink = kitap.ResimLink;
+                guncellenecekKitap.SilindiMi = kitap.SilindiMi;
+                guncellenecekKitap.StokAdedi = kitap.StokAdedi;
+                guncellenecekKitap.YazarId = kitap.YazarId;
+                guncellenecekKitap.TurId = kitap.TurId;
+                myKitapManager.KitapGuncelle(kitap);
+                
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

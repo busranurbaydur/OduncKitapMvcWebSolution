@@ -1,0 +1,52 @@
+﻿@using OduncKitapMvcWebSolution_Business;
+@model List<Yazarlar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+@{if (ViewBag.YazarListCount == 0)
+    {
+        <div class="alert alert-success" role="alert">
+            Yazar tablosunda kayıt bulunmamaktadır.
+            <br />
+        </div>
+    }
+}
+
+<a href="/Yazar/Ekle" class="btn btn-sm btn-primary"> Yeni Yazar Ekle</a>
+<br />
+<br />
+
+@{ if (ViewBag.YazarListCount > 0)
+    {
+        int siraNo = 0;
+        <table class="table table-hover">
+            <tr>
+                <th>Sıra No</th>
+                <th>Yazar Adı</th>
+                <th>Yazar Soyadı</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(siraNo+=1)</td>
+                    <td>@item.YazarAdi</td>
+                    <td>@item.YazarSoyadi</td>
+                    <td>@item.EklenmeTarihi.ToShortDateString()</td>
+                    <td>
+                        <a href="/Yazar/Guncelle/@item.Id" class="btn btn-sm btn-warning">Güncelle</a>
+
+                        <a href="/Yazar/Sil/@item.Id" class="btn btn-sm btn-danger" >Sil</a>
+                        
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    
+    }

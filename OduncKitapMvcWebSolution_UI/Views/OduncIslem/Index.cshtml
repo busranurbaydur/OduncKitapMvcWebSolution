@@ -1,4 +1,5 @@
-﻿
+﻿@using OduncKitapMvcWebSolution_Business
+@model List<OduncIslemler>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -19,3 +20,37 @@
     @Html.ActionLink("Yeni Ödünç İşlem", "EKLE", "OduncIslem", null, new { @class = "btn btn-sm btn-primary", @style = "margin:5px" })
 }
 
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Kayıt Tarihi</th>
+        <th>Üye Adı</th>
+        <th>Kitap Adı</th>
+        <th>Personel Adı</th>
+        <th>Ödünç Alma Tarihi</th>
+        <th>Ödünç Bitiş Tarihi</th>
+        <th>Teslim Edildi Mi</th>
+        <th>Teslim Edilme Tarihi</th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.KayitTarihi</td>
+            <td>@item.Uyeler.UyeAdi  @item.Uyeler.UyeSoyadi</td>
+            <td>@item.Kitaplar.KitapAdi</td>
+            <td>@item.Personeller.PersonelAdi @item.Personeller.PersonelSoyadi</td>
+            <td>@item.OduncAlinmaTarihi</td>
+            <td>@item.OduncBitisTarihi</td>
+            <td>@item.TeslimEttiMi</td>
+            <td>@item.TeslimEttigiTarih</td>
+
+            <td><a href="/OduncIslem/Sil/@item.Id" class="btn btn-danger">Sil</a></td>
+            
+
+        </tr>
+    }
+
+</table>

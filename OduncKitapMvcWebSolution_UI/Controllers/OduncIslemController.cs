@@ -16,10 +16,12 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
         KitapManager myKitapManager = new KitapManager();
         UyeManager myUyeManager = new UyeManager();
         OduncIslemManager myOduncIslemManager = new OduncIslemManager();
+       // private const int pageSize = 10;
         // GET: OduncIslem
         public ActionResult Index()
         {
-            return View();
+            List<OduncIslemler> tumIslemleriGetir = myOduncIslemManager.TumIslemleriGetir();
+            return View(tumIslemleriGetir);
         }
 
         [HttpGet]
@@ -89,6 +91,28 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
 
                 return View(model);
             }
+        }
+
+        public ActionResult Sil(int id)
+        {
+            try
+            {
+                if (myOduncIslemManager.IslemSil(id))
+                {
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError("", "Beklenmedik bir hata oluştu!" + ex.Message);
+                //TO DO: ex.Message loglanabilir
+                return RedirectToAction("Index", "Yazar");
+
+            }
+
         }
     }
 }

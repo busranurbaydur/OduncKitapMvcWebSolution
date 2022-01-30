@@ -132,12 +132,17 @@
     <Compile Include="Controllers\KitapController.cs" />
     <Compile Include="Controllers\OduncIslemController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
+    <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\TurController.cs" />
+    <Compile Include="Controllers\UyeController.cs" />
+    <Compile Include="Controllers\YazarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KitapViewModel.cs" />
     <Compile Include="Models\OduncIslemViewModel.cs" />
+    <Compile Include="Models\TurViewModel.cs" />
+    <Compile Include="Models\YazarViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +233,14 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Yazar\Index.cshtml" />
+    <Content Include="Views\Uye\Index.cshtml" />
+    <Content Include="Views\Personel\Index.cshtml" />
+    <Content Include="Views\Tur\Duzenle.cshtml" />
+    <Content Include="Views\Tur\Ekle.cshtml" />
+    <Content Include="Views\Kitap\Guncelle.cshtml" />
+    <Content Include="Views\Yazar\Ekle.cshtml" />
+    <Content Include="Views\Yazar\Guncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

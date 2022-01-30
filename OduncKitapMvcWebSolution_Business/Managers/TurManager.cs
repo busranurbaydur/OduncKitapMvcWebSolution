@@ -24,5 +24,36 @@ namespace OduncKitapMvcWebSolution_Business.Managers
                 throw ex;
             }
         }
+
+        public bool YeniTurEkle(Turler yeniTur)
+        {
+            try
+            {
+                dbContext.Turler.Add(yeniTur);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool TurSil(int id)
+        {
+            var silinecekTur = dbContext.Turler.FirstOrDefault(x=>x.Id==id);
+            dbContext.Turler.Remove(silinecekTur);
+            dbContext.SaveChanges();
+
+            return true;
+        }
+      
+        public bool TurGuncelle(Turler tur)
+        {
+            var guncellenecekTur = dbContext.Turler.FirstOrDefault(x => x.Id==tur.Id);
+            dbContext.SaveChanges();
+            return true;
+        }
     }
 }

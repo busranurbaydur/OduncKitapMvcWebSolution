@@ -25,5 +25,37 @@ namespace OduncKitapMvcWebSolution_Business.Managers
                 throw ex;
             }
         }
+
+        public bool YeniUyeEkle(Uyeler yeniUye)
+        {
+            try
+            {
+                dbContext.Uyeler.Add(yeniUye);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool UyeSil(int id)
+        {
+            var silinecekUye = dbContext.Uyeler.FirstOrDefault(x => x.Id == id);
+            dbContext.Uyeler.Remove(silinecekUye);
+            dbContext.SaveChanges();
+
+            return true;
+        }
+
+        public bool UyeGuncelle(Uyeler uye)
+        {
+            var guncellenecekUye = dbContext.Uyeler.FirstOrDefault(x => x.Id == uye.Id);
+            dbContext.SaveChanges();
+            return true;
+        }
+
     }
 }

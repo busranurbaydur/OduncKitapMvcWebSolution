@@ -1,0 +1,77 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model KitapViewModel
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Guncelle</h2>
+
+<div class="form-group col-4">
+
+    @using (Html.BeginForm("Guncelle", "Kitap", FormMethod.Post, new { @class = "form-horizontal", enctyp = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+            @Html.HiddenFor(x => x.Id)
+            @Html.Label("Kitap Adı : ") <br /><br />
+            @Html.TextBoxFor(x => x.KitapAdi, new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.HiddenFor(x => x.Id)
+            @Html.Label("Tür : ") <br /><br />
+            @Html.DropDownListFor(x => x.TurId, (List<SelectListItem>)ViewBag.TurListesi,
+           new { @class = "form-control" }
+           )
+
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(x => x.Id)
+
+            @Html.Label("Yazar : ") <br /><br />
+            @Html.DropDownListFor(x => x.YazarId, (List<SelectListItem>)ViewBag.YazarListesi,
+           new { @class = "form-control" }
+           )
+
+        </div>
+        <div class="form-group">
+            @Html.HiddenFor(x => x.Id)
+            @Html.Label("Sayfa Sayısı : ") <br />
+            @Html.TextBoxFor(x => x.SayfaSayisi,
+           new { @class = "form-control", type = "number", min = 0 }
+           )
+
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.HiddenFor(x => x.Id)
+            @Html.Label("Stok Adedi : ") <br />
+            @Html.TextBoxFor(x => x.StokAdedi,
+           new { @class = "form-control", type = "number", min = 0 }
+           )
+
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(x => x.Id)
+            @Html.Label("Resim : ") <br />
+            @Html.TextBoxFor(x => x.Resim,
+           new { @class = "form-control", type = "file", multiple = false }
+           )
+
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Kitap Güncelle</button>
+        </div>
+    }
+</div>

@@ -26,5 +26,35 @@ namespace OduncKitapMvcWebSolution_Business.Managers
                 throw ex;
             }
         }
+
+        public List<OduncIslemler> TumIslemleriGetir()
+        {
+            try
+            {
+                List<OduncIslemler> oduncIslemList = new List<OduncIslemler>();
+                oduncIslemList = dbContext.OduncIslemler.ToList();
+                return oduncIslemList;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public bool IslemSil(int id)
+        {
+
+            var silinecekIslem = dbContext.OduncIslemler.FirstOrDefault(x => x.Id == id);
+
+            dbContext.OduncIslemler.Remove(silinecekIslem);
+            dbContext.SaveChanges();
+
+            return true;
+        }
+
+        
     }
 }

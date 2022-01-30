@@ -1,0 +1,36 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model YazarViewModel
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ekle</h2>
+
+<div class="form-group col-4">
+
+    @using (Html.BeginForm("Ekle", "Yazar", FormMethod.Post, new { @class = "form-horizontal", enctyp = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+            @Html.Label("Yazar Adı : ") <br /><br />
+            @Html.TextBoxFor(x => x.YazarAdi, new { @class = "form-control" })
+
+        </div>
+
+
+        <div class="form-group">
+
+            @Html.Label("Yazar Soyadı : ") <br /><br />
+            @Html.TextBoxFor(x => x.YazarSoyadi, new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Yazar Ekle</button>
+        </div>
+    }
+</div>
