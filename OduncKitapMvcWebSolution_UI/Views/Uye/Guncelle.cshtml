@@ -1,0 +1,45 @@
+﻿@using OduncKitapMvcWebSolution_UI.Models
+@model UyeViewModel
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Üye Guncelle</h2>
+
+@using (Html.BeginForm("Guncelle", "Uye", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Uye Adı : ")
+    @Html.TextBoxFor(x => x.UyeAdi, new { @class = "form-control" })
+    <br />
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Uye Soyadı : ")
+    @Html.TextBoxFor(x => x.UyeSoyadi, new { @class = "form-control" })
+    <br />
+
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Doğum Tarihi : ")
+    @Html.TextBoxFor(x => x.DogumTarihi, new { @class = "form-control" })
+    <br />
+
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Telefon : ")
+    @Html.TextBoxFor(x => x.TelefonNumarasi, new { @class = "form-control" })
+    <br />
+
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.Label("Email : ")
+    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <br />
+
+
+
+    @*@Html.ActionLink("Güncelle", "Guncelle", "Ogrenci",
+        new { }, new { @class = "btn btn-primary" })*@
+    <input type="submit" class="btn btn-primary" value="Güncelle" />
+}

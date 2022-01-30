@@ -141,7 +141,9 @@
     </Compile>
     <Compile Include="Models\KitapViewModel.cs" />
     <Compile Include="Models\OduncIslemViewModel.cs" />
+    <Compile Include="Models\PersonelViewModel.cs" />
     <Compile Include="Models\TurViewModel.cs" />
+    <Compile Include="Models\UyeViewModel.cs" />
     <Compile Include="Models\YazarViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,6 +243,10 @@
     <Content Include="Views\Kitap\Guncelle.cshtml" />
     <Content Include="Views\Yazar\Ekle.cshtml" />
     <Content Include="Views\Yazar\Guncelle.cshtml" />
+    <Content Include="Views\Uye\Ekle.cshtml" />
+    <Content Include="Views\Personel\Ekle.cshtml" />
+    <Content Include="Views\Personel\Guncelle.cshtml" />
+    <Content Include="Views\Uye\Guncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

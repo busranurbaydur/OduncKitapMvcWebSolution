@@ -42,7 +42,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Ekle(Personeller yeniPersonel)
         {
@@ -57,16 +57,16 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 Personeller eklenecekPersonel = new Personeller()
                 {
                     PersonelAdi = yeniPersonel.PersonelAdi,
-                    PersonelSoyadi = yeniPersonel.PersonelSoyadi,
-                    Email = yeniPersonel.Email,
-                    Telefon = yeniPersonel.Telefon,
-                    SilindiMi = false,
-                  
+                    PersonelSoyadi=yeniPersonel.PersonelSoyadi,
+                    Telefon=yeniPersonel.Telefon,
+                    Email=yeniPersonel.Email,
+                    SilindiMi=false
+
                 };
 
                 if (myPersonelManager.YeniPersonelEkle(eklenecekPersonel))
                 {
-                    return RedirectToAction("Index", "Personel");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -118,7 +118,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
         }
 
 
-        // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Guncelle(Personeller personel)
         {
@@ -130,7 +130,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 guncellenecekPersonel.PersonelSoyadi = personel.PersonelSoyadi;
                 guncellenecekPersonel.Telefon = personel.Telefon;
                 guncellenecekPersonel.Email = personel.Email;
-                guncellenecekPersonel.SilindiMi = personel.SilindiMi;
+                guncellenecekPersonel.SilindiMi = false;
                 myPersonelManager.PersonelGuncelle(personel);
             }
             return RedirectToAction("Index");
