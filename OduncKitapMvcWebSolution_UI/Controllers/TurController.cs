@@ -42,7 +42,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             {
 
                 var silinecekTur = myTurManager.TurSil(id);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Tur");
 
             }
             catch (Exception)
@@ -89,7 +89,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             }
            
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Tur");
         }
 
 

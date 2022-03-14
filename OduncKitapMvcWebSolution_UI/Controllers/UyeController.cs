@@ -59,10 +59,10 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                     UyeSoyadi = yeniUye.UyeSoyadi,
                     KayitTarihi = DateTime.Now,
                     SilindiMi = false,
-                    DogumTarihi=yeniUye.DogumTarihi,
-                    Email=yeniUye.Email,
-                    TelefonNumarasi=yeniUye.TelefonNumarasi
-                    
+                    DogumTarihi=yeniUye.DogumTarihi,                 
+                    TelefonNumarasi=yeniUye.TelefonNumarasi,
+                    Email = yeniUye.Email
+
                 };
 
                 if (myUyeManager.YeniUyeEkle(eklenecekUye))
@@ -71,7 +71,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Giriş işlemlerinizi eksiksiz tamamlayınız!");
+                    ModelState.AddModelError("", "Üye işlemlerinizi eksiksiz tamamlayınız!");
                     return View(yeniUye);
                 }
             }
@@ -91,9 +91,9 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
             {
                 if (myUyeManager.UyeSil(id))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Uye");
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Uye");
 
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@ namespace OduncKitapMvcWebSolution_UI.Controllers
                 guncellenecekUye.SilindiMi = false;
                 myUyeManager.UyeGuncelle(uye);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Uye");
         }
     }
 }
